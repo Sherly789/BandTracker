@@ -23,6 +23,17 @@ namespace BandTracker
       Assert.Equal(0, result);
     }
 
+    [Fact]
+    public void Test2_Equal_ReturnsTrueForSameName()
+    {
+      //Arrange, Act
+      Venue firstVenue = new Venue("Household chores");
+      Venue secondVenue = new Venue("Household chores");
+
+      //Assert
+      Assert.Equal(firstVenue, secondVenue);
+    }
+
     public void Dispose()
     {
       Venue.DeleteAll();
