@@ -35,7 +35,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_Save_SavesVenueToDatabase()
+    public void Test3_Save_SavesVenueToDatabase()
     {
       //Arrange
       Venue testVenue = new Venue("ShowBox");
@@ -47,6 +47,23 @@ namespace BandTracker
 
       //Assert
       Assert.Equal(testList, result);
+    }
+
+    [Fact]
+    public void Test4_Save_AssignsIdToVenueObject()
+    {
+      //Arrange
+      Venue testVenue = new Venue("ShowBox");
+      testVenue.Save();
+
+      //Act
+      Venue savedVenue = Venue.GetAll()[0];
+
+      int result = savedVenue.GetId();
+      int testId = testVenue.GetId();
+
+      //Assert
+      Assert.Equal(testId, result);
     }
 
     public void Dispose()
