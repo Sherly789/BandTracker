@@ -67,7 +67,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_Find_FindsVenueInDatabase()
+    public void Test5_Find_FindsVenueInDatabase()
     {
       //Arrange
       Venue testVenue = new Venue("ShowBox");
@@ -81,14 +81,14 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_Delete_DeletesVenueFromDatabase()
+    public void Test6_Delete_DeletesVenueFromDatabase()
     {
       //Arrange
-      string name1 = "ShowBox";
+      string name1 = "Stage1";
       Venue testVenue1 = new Venue(name1);
       testVenue1.Save();
 
-      string name2 = "Stage";
+      string name2 = "Stage2";
       Venue testVenue2 = new Venue(name2);
       testVenue2.Save();
 
@@ -101,9 +101,34 @@ namespace BandTracker
       Assert.Equal(testVenueList, resultVenues);
     }
 
+    [Fact]
+  public void Test7_AddBand_AddsBandToVenue()
+  {
+    //Arrange
+    Venue testVenue = new Venue("Stage1");
+    testVenue.Save();
+
+    Band testBand1 = new Band("The Music");
+    testBand1.Save();
+
+    Band testBand2 = new Band("Jazz");
+    testBand2.Save();
+
+    //Act
+    testVenue.AddBand(testBand1);
+    testVenue.AddBand(testBand2);
+
+    List<Band> result = testVenue.GetBands();
+    List<Band> testList = new List<Band>{testBand1, testBand2};
+
+    //Assert
+    Assert.Equal(testList, result);
+  }
+
     public void Dispose()
     {
       Venue.DeleteAll();
+      Band.DeleteAll();
     }
   }
 }
