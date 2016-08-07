@@ -102,28 +102,50 @@ namespace BandTracker
     }
 
     [Fact]
-  public void Test7_AddBand_AddsBandToVenue()
-  {
-    //Arrange
-    Venue testVenue = new Venue("Stage1");
-    testVenue.Save();
+    public void Test7_AddBand_AddsBandToVenue()
+    {
+      //Arrange
+      Venue testVenue = new Venue("Stage1");
+      testVenue.Save();
 
-    Band testBand1 = new Band("The Music");
-    testBand1.Save();
+      Band testBand1 = new Band("The Music");
+      testBand1.Save();
 
-    Band testBand2 = new Band("Jazz");
-    testBand2.Save();
+      Band testBand2 = new Band("Jazz");
+      testBand2.Save();
 
-    //Act
-    testVenue.AddBand(testBand1);
-    testVenue.AddBand(testBand2);
+      //Act
+      testVenue.AddBand(testBand1);
+      testVenue.AddBand(testBand2);
 
-    List<Band> result = testVenue.GetBands();
-    List<Band> testList = new List<Band>{testBand1, testBand2};
+      List<Band> result = testVenue.GetBands();
+      List<Band> testList = new List<Band>{testBand1, testBand2};
 
-    //Assert
-    Assert.Equal(testList, result);
-  }
+      //Assert
+      Assert.Equal(testList, result);
+    }
+
+    [Fact]
+    public void Test8_GetBands_ReturnsAllVenueBands()
+    {
+      //Arrange
+      Venue testVenue = new Venue("Stage1");
+      testVenue.Save();
+
+      Band testBand1 = new Band("The Music");
+      testBand1.Save();
+
+      Band testBand2 = new Band("Jazz");
+      testBand2.Save();
+
+      //Act
+      testVenue.AddBand(testBand1);
+      List<Band> savedBands = testVenue.GetBands();
+      List<Band> testList = new List<Band> {testBand1};
+
+      //Assert
+      Assert.Equal(testList, savedBands);
+    }
 
     public void Dispose()
     {

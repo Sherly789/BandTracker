@@ -14,7 +14,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_DatabaseEmptyAtFirst()
+    public void Test1_DatabaseEmptyAtFirst()
     {
       //Arrange, Act
       int result = Band.GetAll().Count;
@@ -24,7 +24,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_Equal_ReturnsTrueIfNamesAreTheSame()
+    public void Test2_Equal_ReturnsTrueIfNamesAreTheSame()
     {
       //Arrange, Act
       Band firstBand = new Band("The Music");
@@ -35,7 +35,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_Save_SavesToDatabase()
+    public void Test3_Save_SavesToDatabase()
     {
       //Arrange
       Band testBand = new Band("The Music");
@@ -50,7 +50,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_Save_AssignsIdToBandObject()
+    public void Test4_Save_AssignsIdToBandObject()
     {
       //Arrange
       Band testBand = new Band("The Music");
@@ -67,7 +67,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_Find_FindsBandInDatabase()
+    public void Test5_Find_FindsBandInDatabase()
     {
       //Arrange
       Band testBand = new Band("The Music");
@@ -78,6 +78,26 @@ namespace BandTracker
 
       //Assert
       Assert.Equal(testBand, foundBand);
+    }
+
+    [Fact]
+    public void Test6_AddVenue_AddsVenueToBand()
+    {
+      //Arrange
+      Band testBand = new Band("The Music");
+      testBand.Save();
+
+      Venue testVenue = new Venue("Stage1");
+      testVenue.Save();
+
+      //Act
+      testBand.AddVenue(testVenue);
+
+      List<Venue> result = testBand.GetVenues();
+      List<Venue> testList = new List<Venue>{testVenue};
+
+      //Assert
+      Assert.Equal(testList, result);
     }
 
 
