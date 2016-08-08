@@ -148,7 +148,7 @@ namespace BandTracker
     }
 
     [Fact]
-    public void Test_Delete_DeletesVenueAssociationsFromDatabase()
+    public void Test9_Delete_DeletesVenueAssociationsFromDatabase()
     {
       //Arrange
       Band testBand = new Band("The Music");
